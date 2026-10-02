@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-4 text-center mb-4">
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Фото профілю" class="img-fluid rounded-circle profile-img shadow">
+    </div>
+    <div class="col-md-8">
+        <h1 class="mb-4">{{ title }}</h1>
+        
+        <section class="mb-4">
+            <h2>Про себе</h2>
+            <p>Я студентка, яка навчається на IT-спеціальності. Маю базові навички роботи з HTML, CSS, Python та іншими мовами програмування.</p>
+        </section>
+
+        <section class="mb-4">
+            <h2>Освіта</h2>
+            <p><strong>Заклад вищої освіти:</strong> Карпацький Національний Університет імені Василя Стефаника</p>
+            <p><strong>Спеціальність:</strong>121 спеціальність "Інженерія програмного забезпечення"</p>
+        </section>
+
+        <section class="mb-4">
+            <h2>Навички</h2>
+            <ul>
+                <li>Розробка веб-додатків на JavaScript та Python</li>
+                <li>Семантична верстка HTML та CSS</li>
+                <li>Використання шаблонізатора Bootstrap</li>
+                <li>Робота з версіонуванням Git</li>
+            </ul>
+        </section>
+
+        <section class="mb-4">
+            <h2>Технології</h2>
+            <p>
+                <span class="badge bg-primary">Python</span>
+                <span class="badge bg-success">Flask</span>
+                <span class="badge bg-warning text-dark">HTML / CSS</span>
+                <span class="badge bg-info text-dark">Bootstrap</span>
+            </p>
+        </section>
+
+        <section class="mb-4">
+            <h2>Досвід роботи / Проєкти</h2>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Вебсайт-резюме (Лабораторна робота №2)</h5>
+                    <p class="card-text">Створення структурованого сайту на Flask із шаблонами Jinja2 та Bootstrap.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
