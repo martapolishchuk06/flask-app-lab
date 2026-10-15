@@ -12,3 +12,15 @@ section h2 {
     padding-bottom: 6px;
     margin-bottom: 15px;
 }
+.user-greeting-container {
+    display: flex;
+    margin-top: 20px;
+}
+.vertical-menu {
+    border-right: 2px solid #dee2e6;
+    padding-right: 20px;
+}
+.vertical-menu .nav-link {
+    font-weight: bold;
+    color: #0d6efd;
+}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} Greeting Page {% endblock %}
+
+{% block content %}
+<div class="user-greeting-container">
+    <nav class="vertical-menu">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('users.greetings', name='John', age=30) }}">Greet John</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('users.admin') }}">Admin</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content ms-4">
+        <h2>Hello :)</h2>
+        <p><strong>User:</strong> {{ name }}</p>
+        {% if age %}
+            <p><strong>Age:</strong> {{ age }}</p>
+        {% else %}
+            <p><strong>Age:</strong> Not provided</p>
+        {% endif %}
+    </main>
+</div>
+{% endblock %}
