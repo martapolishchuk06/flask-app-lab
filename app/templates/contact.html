@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% from '_render_field.html' import render_field %}
+
+{% block title %}Контакти{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm p-4">
+            <h2 class="mb-4 text-center">Контактна форма</h2>
+            <form method="POST" action="{{ url_for('contact') }}" novalidate>
+                {{ form.hidden_tag() }}
+                
+                {{ render_field(form.name, placeholder="Введіть ваше ім'я") }}
+                {{ render_field(form.email, placeholder="name@example.com") }}
+                {{ render_field(form.phone, placeholder="+380XXXXXXXXX") }}
+                {{ render_field(form.subject) }}
+                {{ render_field(form.message, rows=4, placeholder="Ваше повідомлення...") }}
+                
+                <div class="d-grid mt-4">
+                    {{ form.submit(class="btn btn-dark btn-block") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

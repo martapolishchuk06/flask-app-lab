@@ -4,11 +4,42 @@
 
 {% block content %}
 <div class="card shadow-sm mt-4">
-    <div class="card-body">
-        <h2 class="card-title">{{ product.name }}</h2>
-        <h4 class="text-success">${{ product.price }}</h4>
-        <p class="card-text mt-3">{{ product.content }}</p>
-        <a href="{{ url_for('products.list_products') }}" class="btn btn-outline-secondary mt-3">Назад до списку товарів</a>
+    <div class="row g-0">
+        {% if product.image %}
+        <div class="col-md-4">
+           <img src="{{ url_for('static', filename=product.image) if product.image else url_for('static', filename='images/default.jpg') }}" 
+                class="img-fluid rounded-start h-100 w-100" style="object-fit: cover;" 
+                onerror="this.src='https://via.placeholder.com/400x300?text=No+Image';" alt="{{ product.name }}">
+        </div>
+        {% endif %}
+        <div class="{% if product.image %}col-md-8{% else %}col-12{% endif %}">
+            <div class="card-body">
+                <h2 class="card-title">{{ product.name }}</h2>
+                
+                {% if product.category %}
+                    <span class="badge bg-info text-dark mb-2">{{ product.category }}</span>
+                {% endif %}
+                
+                <h4 class="text-success mt-2">${{ product.price }}</h4>
+                <p class="card-text mt-3">{{ product.content }}</p>
+                
+                {% if product.quantity is defined %}
+                    <p class="card-text"><strong>В наявності:</strong> {{ product.quantity }} шт.</p>
+                {% endif %}
+                
+                {% if product.created_at %}
+                    <p class="text-muted small"><small>Створено: {{ product.created_at }}</small></p>
+                {% endif %}
+
+                <div class="d-flex gap-2 mt-4">
+                    <a href="{{ url_for('products.list_products') }}" class="btn btn-outline-secondary">Назад до списку товарів</a>
+                    <a href="{{ url_for('products.edit_product', product_id=product.id) }}" class="btn btn-warning">Редагувати</a>
+                    <form action="{{ url_for('products.delete_product', product_id=product.id) }}" method="POST" onsubmit="return confirm('Ви дійсно бажаєте видалити цей товар?');" class="d-inline">
+                        <button type="submit" class="btn btn-danger">Видалити</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
