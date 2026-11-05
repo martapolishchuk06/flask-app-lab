@@ -1,7 +1,8 @@
 import logging
-from flask import request, redirect, url_for, render_template, abort, flash
-from . import app
+from flask import Blueprint, request, redirect, url_for, render_template, abort, flash
 from .forms import ContactForm
+
+main_bp = Blueprint('main', __name__, url_prefix='')
 
 logging.basicConfig(
     filename='contact_form.log',
@@ -9,17 +10,17 @@ logging.basicConfig(
     format='%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'
 )
 
-@app.route('/')
+@main_bp.route('/')
 def main():
     return render_template("index.html", title="Резюме")
 
-@app.route('/homepage')
+@main_bp.route('/homepage')
 def home():
     """View for the Home page of your website."""
     agent = request.user_agent
     return render_template("homepage.html", agent=agent)
 
-@app.route('/contact', methods=['GET', 'POST'])
+@main_bp.route('/contact', methods=['GET', 'POST'])
 def contact():
     form = ContactForm()
     if form.validate_on_submit():
@@ -36,6 +37,6 @@ def contact():
             logging.error(f"Помилка при збереженні даних контактної форми: {e}")
             flash('Виникла помилка під час відправки повідомлення.', 'danger')
 
-        return redirect(url_for('contact'))
+        return redirect(url_for('main.contact'))
 
     return render_template('contact.html', title='Контакти', form=form)

@@ -1,29 +1,31 @@
 import pytest
-from app import app
+from app import create_app
 from app.products.db import get_db
 
 @pytest.fixture
 def client():
+    app = create_app('testing')
     app.config['TESTING'] = True
     app.config['WTF_CSRF_ENABLED'] = False
     
-    # Ініціалізація тестового запису в базі
-    db = get_db()
-    table = db.table('products')
-    if not table.search(pytest.importorskip("tinydb").Query().id == 1):
-        table.insert({
-            "id": 1,
-            "name": "Laptop",
-            "price": 1200.00,
-            "category": "Електроніка",
-            "quantity": 10,
-            "content": "Тестовий опис",
-            "image": "uploads/default.jpg",
-            "created_at": "2025-01-01 12:00:00"
-        })
-        
-    with app.test_client() as client:
-        yield client
+    with app.app_context():
+        # Ініціалізація тестового запису в базі
+        db = get_db()
+        table = db.table('products')
+        if not table.search(pytest.importorskip("tinydb").Query().id == 1):
+            table.insert({
+                "id": 1,
+                "name": "Laptop",
+                "price": 1200.00,
+                "category": "Електроніка",
+                "quantity": 10,
+                "content": "Тестовий опис",
+                "image": "uploads/default.jpg",
+                "created_at": "2025-01-01 12:00:00"
+            })
+            
+        with app.test_client() as client:
+            yield client
 
 def test_list_products(client):
     response = client.get('/products/')

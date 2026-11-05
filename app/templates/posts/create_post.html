@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<h2>Створення нового поста</h2>
+<form method="POST" class="mt-3">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.title.label(class="form-label") }}
+        {{ form.title(class="form-control") }}
+        {% for error in form.title.errors %}
+            <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div class="mb-3">
+        {{ form.category.label(class="form-label") }}
+        {{ form.category(class="form-select") }}
+    </div>
+    <div class="mb-3">
+        {{ form.content.label(class="form-label") }}
+        {{ form.content(class="form-control", rows="5") }}
+        {% for error in form.content.errors %}
+            <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+    </div>
+    {{ form.submit(class="btn btn-success") }}
+    <a href="{{ url_for('posts.list_posts') }}" class="btn btn-secondary">Скасувати</a>
+</form>
+{% endblock %}

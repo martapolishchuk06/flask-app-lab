@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <span class="badge bg-info text-dark mb-2">{{ post.category }}</span>
+        <h2>{{ post.title }}</h2>
+        <p class="text-muted small">Дата публікації: {{ post.posted.strftime('%d.%m.%Y %H:%M') }}</p>
+        <hr>
+        <p class="card-text" style="white-space: pre-line;">{{ post.content }}</p>
+    </div>
+    <div class="card-footer bg-white">
+        <a href="{{ url_for('posts.update_post', id=post.id) }}" class="btn btn-warning btn-sm">Редагувати</a>
+        <a href="{{ url_for('posts.delete_post', id=post.id) }}" class="btn btn-danger btn-sm">Видалити</a>
+        <a href="{{ url_for('posts.list_posts') }}" class="btn btn-secondary btn-sm float-end">Назад до списку</a>
+    </div>
+</div>
+{% endblock %}
