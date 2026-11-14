@@ -20,7 +20,7 @@ def init_db():
                 "category": "Електроніка",
                 "quantity": 10,
                 "content": "Потужний ноутбук з процесором Intel Core i7, 16 ГБ оперативної пам'яті та SSD на 512 ГБ.",
-                "image": "uploads/default.jpg",
+                "image": "images/default.jpg",
                 "created_at": "2025-01-01 12:00:00"
             },
             {
@@ -30,7 +30,7 @@ def init_db():
                 "category": "Смартфони",
                 "quantity": 15,
                 "content": "Смартфон із 6.5-дюймовим OLED-дисплеєм, подвійною камерою та акумулятором на 5000 мА·год.",
-                "image": "uploads/default.jpg",
+                "image": "images/default.jpg",
                 "created_at": "2025-01-01 12:00:00"
             },
             {
@@ -40,7 +40,7 @@ def init_db():
                 "category": "Електроніка",
                 "quantity": 5,
                 "content": "Настільний комп'ютер для ігор або роботи з графікою: RTX 4070, 32 ГБ RAM, 1 ТБ SSD.",
-                "image": "uploads/default.jpg",
+                "image": "images/default.jpg",
                 "created_at": "2025-01-01 12:00:00"
             }
         ]

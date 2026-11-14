@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, TextAreaField, DecimalField, IntegerField, SelectField, SubmitField
-from wtforms.validators import DataRequired, Length, NumberRange
+from wtforms.validators import DataRequired, InputRequired, Length, NumberRange
 
 CATEGORIES = [
     'Електроніка',
@@ -31,7 +31,7 @@ class ProductForm(FlaskForm):
     ])
     
     quantity = IntegerField('Кількість одиниць', validators=[
-        DataRequired(message="Це поле є обов'язковим"),
+        InputRequired(message="Це поле є обов'язковим"),
         NumberRange(min=0, message="Кількість не може бути від'ємною")
     ])
     
